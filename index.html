@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Pulse - Real time Social Analytics</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Sentiment Pulse</div>
+                <div class="controls">
+                    <div class="search-box">
+                        <div class="search-icon">🔍</div>
+                        <input 
+                            type="text" 
+                            class="search-input" 
+                            placeholder="search keywords, hashtags..." 
+                            id="searchInput">
+                    </div>
+                    <div class="status-indicator">
+                        <div class="status-dot"></div>
+                        <span>Live</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            
+            <!-- Stats Banner -->
+            <div class="stats-banner">
+                <div class="stat-item">
+                    <span class="stat-number" id="totalPosts">0</span>
+                    <div class="stat-label">Total Posts</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="postsPerMinute">0</span>
+                    <div class="stat-label">Posts/Min</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="topKeyword">-</span>
+                    <div class="stat-label">Top Keyword</div>
+                </div>
+            </div>
+
+            <!-- Dashboard Grid -->
+            <div class="dashboard-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Sentiment Timeline</h2>
+                        <div class="loading-spinner" id="chartLoader" style="display: none;"></div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="sentimentChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Live Activity</h2>
+                        <button class="button button-primary" id="pauseBtn">Pause</button>
+                    </div>
+                    <div class="posts-feed" id="postsFeed">
+                        <!-- Dynamically add posts here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Metrics Grid -->
+            <div class="metrics-grid">
+                <div class="metric-card metric-positive">
+                    <div class="metric-value" id="positiveCount">0</div>
+                    <div class="metric-label">Positive Posts</div>
+                </div>
+                <div class="metric-card metric-negative">
+                    <div class="metric-value" id="negativeCount">0</div>
+                    <div class="metric-label">Negative Posts</div>
+                </div>
+                <div class="metric-card metric-neutral">
+                    <div class="metric-value" id="neutralCount">0</div>
+                    <div class="metric-label">Neutral Posts</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="engagementRate">0%</div>
+                    <div class="metric-label">Engagement Rate</div>
+                </div>
+            </div>
+
+            <!-- Trending Keywords + Controls -->
+            <div class="dashboard-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Trending Keywords</h2>
+                    </div>
+                    <div class="word-cloud" id="wordCloud">
+                        <!-- Word cloud items will be added here -->
+                    </div>
+                </div>
+
+                <div class="controls-panel">
+                    <div class="control-group">
+                        <label class="control-label">Focus Topic</label>
+                        <input 
+                            type="text" 
+                            class="control-input" 
+                            id="topicFilter" 
+                            placeholder="e.g., #AI, #Tech, bitcoin">
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Time Range</label>
+                        <select class="control-input" id="timeRange">
+                            <option value="5">Last 5 minutes</option>
+                            <option value="15" selected>Last 15 minutes</option>
+                            <option value="30">Last 30 minutes</option>
+                            <option value="60">Last 1 hour</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Sentiment Filter</label>
+                        <select class="control-input" id="sentimentFilter">
+                            <option value="all">All sentiments</option>
+                            <option value="positive">Positive Only</option>
+                            <option value="negative">Negative Only</option>
+                            <option value="neutral">Neutral Only</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+</body>
+</html>
+
+
+
+
+
